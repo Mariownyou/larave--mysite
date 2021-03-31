@@ -11,6 +11,7 @@
 
             <div class="menu-top">
                 <a class="menu-logo-gap"></a>
+                @if(Route::is('home'))
                 <a class="menu-logo">
                     <div class="menu-photo"></div>
                     {{--TODO менять добавлять ссылку на главную страницу в зависимости от текущей--}}
@@ -18,6 +19,14 @@
                         <div class="menu-link">Лева Кондратьев</div>
                     </div>
                 </a>
+                @else
+                <a class="menu-logo" href="{{ route('home') }}">
+                    <div class="menu-photo"></div>
+                    <div class="menu-item">
+                        <div class="menu-link">Лева Кондратьев</div>
+                    </div>
+                </a>
+                @endif
                 <div class="menu-line menu-line-main">
 
                     <div class="menu-items">
@@ -30,12 +39,13 @@
                         <a class="menu-item" href="#">
                             <div class="menu-link">Клуб</div>
                         </a>
-                        <a class="menu-item" href="#">
+                        <a class="menu-item" href="{{ route('blog.index') }}">
                             <div class="menu-link">Блог</div>
                         </a>
                     </div>
                     <div class="menu-blogpost" id="menu-blogpost"></div>
                 </div>
+                @yield('row')
             </div>
         </div>
     </nav>
@@ -94,7 +104,7 @@
                             <div class="mobile-menu-link">Школа</div>
                             <svg class="mobile-menu-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M0,0h8v8H6.5V1.5H0z"/></svg>
                         </a>
-                        <a class="mobile-menu-item" href="#">
+                        <a class="mobile-menu-item" href="{{ route('blog.index') }}">
                             <div class="mobile-menu-link">Блог</div>
                             <svg class="mobile-menu-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M0,0h8v8H6.5V1.5H0z"/></svg>
                             <span class="mobile-menu-blogpost">&nbsp;&mdash; </span>
@@ -102,11 +112,15 @@
 
                     </div>
                 </div>
+                @yield('row-mob')
             </div>
 
         </div>
     </nav>
 
+    <div class="header-content">
+        @include('includes.spotlight')
+    </div>
     <div class="menu-spacer"></div>
 
 </header>

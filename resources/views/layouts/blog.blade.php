@@ -20,17 +20,17 @@
     @stack('styles')
 </head>
 <body>
-    <div id="app" class="frame">
-        @include('includes.navbar')
+<div id="app" class="frame">
+    @include('includes.navbar_full')
 
-        <div class="page-title">
-            <h1>@yield('page-title')</h1>
-        </div>
-        <main class="margins">
-            @yield('content')
-        </main>
-
-        @include('includes.footer')
+    <div class="page-title">
+        <h1>@yield('page-title')</h1>
     </div>
+    <main class="margins">
+        @yield('content')
+    </main>
+
+    @include('includes.footer')
+</div>
 </body>
 </html>
