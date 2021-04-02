@@ -2,11 +2,7 @@
     <nav class="menu-container menu-container_hidden" id="menu-container">
         <div class="menu">
             <div class="menu-right" id="menu-right">
-                <div class="menu-items">
-                    <a class="menu-language" href="#"><div class="menu-link">en</div></a>
-                    <a class="menu-language"><div class="menu-link">ру</div></a>
-                    <div class="menu-language-separator"></div>
-                </div>
+                @include('includes.navbar.navbar_right')
             </div>
 
             <div class="menu-top">
@@ -60,14 +56,24 @@
             <a class="mobile-menu-logo" id="mobile-menu-logo">
                 <div class="mobile-menu-photo"></div>
             </a>
+            @if(Route::is('home'))
+                <a class="mobile-menu-item mobile-menu-item-hidden">
+                    <div class="mobile-menu-link">Лева Кондратьев</div>
+                </a>
 
-            <a class="mobile-menu-item mobile-menu-item-hidden">
-                <div class="mobile-menu-link">Лева Кондратьев</div>
-            </a>
+                <a class="mobile-menu-item mobile-menu-item-visible">
+                    <div class="mobile-menu-link">Лева Кондратьев</div>
+                </a>
+            @else
+                <a class="mobile-menu-item mobile-menu-item-hidden" href="{{ route('home') }}">
+                    <div class="mobile-menu-link">Лева Кондратьев</div>
+                </a>
 
-            <a class="mobile-menu-item mobile-menu-item-visible">
-                <div class="mobile-menu-link">Лева Кондратьев</div>
-            </a>
+                <a class="mobile-menu-item mobile-menu-item-visible" href="{{ route('home') }}">
+                    <div class="mobile-menu-link">Лева Кондратьев</div>
+                </a>
+            @endif
+
 
             <label class="mobile-menu-hamburger" id="mobile-menu-hamburger" for="mobile-menu-toggler">
                 <div class="mobile-menu-hamburger-inner"><span></span><span> </span><span></span></div>

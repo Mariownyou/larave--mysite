@@ -1,4 +1,4 @@
-@extends('includes.navbar')
+@extends('includes.navbar.navbar')
 
 @section('row')
 <div class="menu-line menu-line-secondary menu-line-submenu">

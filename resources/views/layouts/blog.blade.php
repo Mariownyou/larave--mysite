@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="app" class="frame">
-    @include('includes.navbar_full')
+    @include('includes.navbar.navbar_full')
 
     <div class="page-title">
         <h1>@yield('page-title')</h1>
@@ -32,5 +32,6 @@
 
     @include('includes.footer')
 </div>
+@include('includes.errors')
 </body>
 </html>
