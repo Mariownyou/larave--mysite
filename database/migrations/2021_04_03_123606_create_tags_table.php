@@ -17,6 +17,9 @@ class CreateTagsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->boolean('favorite')->default(false);
+            $table->boolean('navbar')->default(false);
         });
     }
 

@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('/blog', 'App\Http\Controllers\BlogController');
+Route::resource('/tags', 'App\Http\Controllers\TagController');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/school', [App\Http\Controllers\MainController::class, 'school'])->name('school');
+Route::get('/search', [App\Http\Controllers\MainController::class, 'search'])->name('search');

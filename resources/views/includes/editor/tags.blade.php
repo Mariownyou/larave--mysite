@@ -2,30 +2,15 @@
     <div class="form-label input-label">
         <label>Теги</label>
     </div>
-
+    <?php
+        $items = \App\Models\Tag::all();
+    ?>
     <div class="form-element">
         <select id="tags" name="tags[]" tabindex="-1" class="width-4 chzn-select chzn-done" multiple="multiple"
                 data-placeholder=" " size="2" style="display: none;">
-            <option>Берлин</option>
-            <option>вебинар</option>
-            <option>видео</option>
-            <option>визуализация</option>
-            <option>восприятие</option>
-            <option>диаграмма</option>
-            <option>живопись</option>
-            <option>жизнь</option>
-            <option>интерфейс</option>
-            <option>история</option>
-            <option>метро</option>
-            <option>музыка</option>
-            <option>навигация</option>
-            <option>программирование</option>
-            <option>путешествия</option>
-            <option>студентам</option>
-            <option>транспорт</option>
-            <option>Уфа</option>
-            <option>фото</option>
-            <option>юридическое</option>
+            @foreach($items as $item)
+                <option>{{ $item->name }}</option>
+            @endforeach
         </select>
         <div id="tags_chzn" class="chzn-container chzn-container-multi" style="width: 747px;">
             <ul class="chzn-choices">

@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -55,7 +56,7 @@ class BlogController extends Controller
 
         //Prepare HTML & ignore HTML errors
         $dom = new \domdocument();
-        $dom->loadHtml($content, LIBXML_NOWARNING | LIBXML_NOERROR);
+        $dom->loadHtml('<?xml encoding="utf-8" ?>' . $content, LIBXML_NOWARNING | LIBXML_NOERROR);
 
         //identify img element
         $images = $dom->getelementsbytagname('img');
@@ -108,8 +109,10 @@ class BlogController extends Controller
             {
                 $post->tags()->attach($model->id);
             } else {
+                $slug = Str::slug($tag, "-");
                 $new_tag = new Tag();
                 $new_tag->name = $tag;
+                $new_tag->slug = $slug;
                 $new_tag->save();
                 $post->tags()->attach($new_tag->id);
             }

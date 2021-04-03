@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'slug', 'favorite', 'navbar'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function posts()
     {

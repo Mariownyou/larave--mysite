@@ -15,7 +15,7 @@
             </div>
             <div class="e2-note-meta">
                 @foreach($post->tags as $tag)
-                    <a href="{{ route('blog.index') }}" class="e2-tag">{{ $tag->name }}</a>
+                    <a href="{{ route('tags.show', $tag->slug) }}" class="e2-tag">{{ $tag->name }}</a>
                 @endforeach
             </div>
         </article>

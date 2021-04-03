@@ -22,7 +22,7 @@
 </head>
 <body>
 <div id="app" class="frame">
-    @include('includes.navbar.navbar_full')
+    @include('includes.navbar.navbar_blog')
 
     <div class="page-title">
         <h1>@yield('page-title')</h1>

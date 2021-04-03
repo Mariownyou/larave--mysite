@@ -35,7 +35,7 @@
                         <a class="menu-item" href="#">
                             <div class="menu-link">Клуб</div>
                         </a>
-                        <a class="menu-item" href="{{ route('blog.index') }}">
+                        <a class="menu-item {{ Route::is('blog/*') ? 'menu-item-parent' : (Route::is('tags/*') ? 'menu-item-parent' : '' ) }}" href="{{ route('blog.index') }}">
                             <div class="menu-link">Блог</div>
                         </a>
                     </div>
