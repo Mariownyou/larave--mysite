@@ -17,18 +17,18 @@
             </label>
 
             <div class="form-label-saveinfo">
-                                    <span id="livesaving" style="display: none">Сохранение... <span class="e2-svgi"><svg
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                                                <circle r="39" cx="50" cy="50" transform="rotate(-90 50 50)"
-                                                        stroke-width="6" fill="none" stroke-dasharray="245"
-                                                        stroke-dashoffset="61">
-                                                    <animateTransform attributeName="transform" type="rotate"
-                                                                      from="0 50 50" to="360 50 50" dur="1333ms" begin="indefinite"
-                                                                      repeatCount="1">
-                                                    </animateTransform>
-                                                </circle>
-                                            </svg></span>
-                                    </span>
+                <span id="livesaving" style="display: none">Сохранение... <span class="e2-svgi"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <circle r="39" cx="50" cy="50" transform="rotate(-90 50 50)"
+                                    stroke-width="6" fill="none" stroke-dasharray="245"
+                                    stroke-dashoffset="61">
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0 50 50" to="360 50 50" dur="1333ms" begin="indefinite"
+                                                  repeatCount="1">
+                                </animateTransform>
+                            </circle>
+                        </svg></span>
+                </span>
                 <span id="livesave-button"
                       class="e2-keyboard-shortcut e2-clickable-keyboard-shortcut e2-admin-link e2-keyboard-shortcut_visible"
                       style="display: none">Ctrl + S</span>
@@ -39,9 +39,7 @@
         <div class="form-element">
             <textarea name="text"
                       class="required e2-text-textarea e2-textarea-autosize full-width height-16 e2-external-drop-target e2-external-drop-target-textarea e2-external-drop-target-altable"
-                      id="text" tabindex="2" style="height: 396px;">
-
-            </textarea>
+                      id="text" tabindex="2" style="height: 396px;"></textarea>
         </div>
 
     </div>
