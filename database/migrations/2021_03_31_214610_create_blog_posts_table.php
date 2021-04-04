@@ -18,6 +18,9 @@ class CreateBlogPostsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->longText('content');
+            $table->boolean('published')->default(false);
+            $table->string('slug')->unique();
+            $table->string('private_id')->unique();
             // $table->json('tags')->nullable();
         });
     }

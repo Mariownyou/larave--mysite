@@ -9,7 +9,7 @@
                     <span class="admin-links admin-links-floating admin-links-sticky"></span>
                     <h2>Изменение тега</h2>
                 </div>
-                <form id="form-note" action="{{ route('tags.update', $tag->slug) }}" enctype="multipart/form-data" method="post"
+                <form id="form-note" action="{{ route('blog.tags.update', $tag->slug) }}" enctype="multipart/form-data" method="post"
                       accept-charset="utf-8" autocomplete="off">
                     @csrf
                     @method('put')
@@ -22,7 +22,7 @@
                             @include('includes.editor.componetns.checkbox', ['name' => 'favorite', 'title' => ' Добавить в избранное', 'value' => $tag->favorite])
                             @include('includes.editor.componetns.checkbox', ['name' => 'navbar', 'title' => ' Показывать в навигации', 'value' => $tag->navbar])
                         </div>
-                        @include('includes.editor.componetns.button', ['title' => 'Сохранить изменения'])
+                        @include('includes.editor.componetns.form_button', ['title' => 'Сохранить изменения'])
                     </div>
                 </form>
             </div>

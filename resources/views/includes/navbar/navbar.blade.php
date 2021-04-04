@@ -35,7 +35,7 @@
                         <a class="menu-item" href="#">
                             <div class="menu-link">Клуб</div>
                         </a>
-                        <a class="menu-item {{ Route::is('blog/*') ? 'menu-item-parent' : (Route::is('tags/*') ? 'menu-item-parent' : '' ) }}" href="{{ route('blog.index') }}">
+                        <a class="menu-item {{ Route::is('blog/*') ? 'menu-item-parent' : (Route::is('tags/*') ? 'menu-item-parent' : '' ) }}" href="{{ route('blog.posts.index') }}">
                             <div class="menu-link">Блог</div>
                         </a>
                     </div>
@@ -110,7 +110,7 @@
                             <div class="mobile-menu-link">Школа</div>
                             <svg class="mobile-menu-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M0,0h8v8H6.5V1.5H0z"/></svg>
                         </a>
-                        <a class="mobile-menu-item" href="{{ route('blog.index') }}">
+                        <a class="mobile-menu-item" href="{{ route('blog.posts.index') }}">
                             <div class="mobile-menu-link">Блог</div>
                             <svg class="mobile-menu-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M0,0h8v8H6.5V1.5H0z"/></svg>
                             <span class="mobile-menu-blogpost">&nbsp;&mdash; </span>

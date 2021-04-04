@@ -8,7 +8,7 @@ $items = \App\Models\Tag::all()->where('navbar', true);
 
     <div class="menu-items">
         @foreach($items as $item)
-            <a class="menu-item" href="{{ route('tags.show', $item->name) }}">
+            <a class="menu-item" href="{{ route('blog.tags.show', $item->name) }}">
                 <div class="menu-link">{{ $item->name }}</div>
             </a>
         @endforeach
@@ -21,7 +21,7 @@ $items = \App\Models\Tag::all()->where('navbar', true);
     <div class="mobile-menu-line mobile-menu-line-secondary mobile-menu-line-submenu">
         <div class="mobile-menu-items">
             @foreach($items as $item)
-                <a class="mobile-menu-item" href="{{ route('tags.show', $item->slug) }}">
+                <a class="mobile-menu-item" href="{{ route('blog.tags.show', $item->slug) }}">
                     <div class="mobile-menu-link">{{ $item->name }}</div>
                     <svg class="mobile-menu-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="8">
                         <path d="M0,0h8v8H6.5V1.5H0z"></path>

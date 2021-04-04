@@ -19,8 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('/blog', 'App\Http\Controllers\BlogController');
-Route::resource('/tags', 'App\Http\Controllers\TagController');
+Route::name('blog.')->prefix('blog')->group(function () {
+    Route::post('/publish', [App\Http\Controllers\BlogController::class, 'publish']);
+    Route::get('/preview/{id}', [App\Http\Controllers\BlogController::class, 'private'])->name('preview');
+    Route::resource('posts', 'App\Http\Controllers\BlogController');
+    Route::resource('drafts', 'App\Http\Controllers\DraftsController');
+    Route::resource('tags', 'App\Http\Controllers\TagController');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/school', [App\Http\Controllers\MainController::class, 'school'])->name('school');

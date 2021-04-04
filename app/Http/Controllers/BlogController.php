@@ -17,7 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::all();
+        $posts = BlogPost::all()->where('published', true);
 
 
         return view('blog.index')->with('posts', $posts);
@@ -53,6 +53,7 @@ class BlogController extends Controller
         ]);
 
         $content=$request->input('content');
+        $title = $request->input('title');
 
         //Prepare HTML & ignore HTML errors
         $dom = new \domdocument();
@@ -96,8 +97,10 @@ class BlogController extends Controller
 
         // creating Post instance
         $post = new BlogPost();
-        $post->title = $request->input('title');
+        $post->title = $title;
         $post->content = $content;
+        $post->slug = Str::slug($title, "-");
+        $post->private_id = sha1(time());
         $post->save();
 
         // cretaing tags
@@ -122,7 +125,7 @@ class BlogController extends Controller
         // saving Post instance
         $post->save();
 
-        return redirect()->route('blog.index');
+        return redirect()->route('blog.posts.index');
     }
 
     /**
@@ -131,9 +134,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(BlogPost $post)
     {
-        //
+        return view('blog.posts.show')->with('post', $post);
     }
 
     /**
@@ -142,7 +145,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(BlogPost $post)
     {
         //
     }
@@ -154,7 +157,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, BlogPost $post)
     {
         //
     }
@@ -165,8 +168,21 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(BlogPost $post)
     {
         //
+    }
+
+    public function publish(Request $request) {
+        $id = $request->id;
+        $post = BlogPost::find($id);
+        $post->published = true;
+        $post->save();
+        return response(['status' => 'OK', 'post_id' => $post->id, 'post_pub' => $post->published], 200);
+    }
+
+    public function private($id) {
+        $post = BlogPost::where('private_id', $id)->first();
+        return view('blog.posts.preview')->with('post', $post);
     }
 }

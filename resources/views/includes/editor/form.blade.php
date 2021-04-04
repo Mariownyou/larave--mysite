@@ -9,7 +9,7 @@
                     <span class="admin-links admin-links-floating admin-links-sticky"></span>
                     <h2>Новая заметка</h2>
                 </div>
-                <form id="form-note" action="{{ route('blog.store') }}" enctype="multipart/form-data" method="post"
+                <form id="form-note" action="{{ route('blog.posts.store') }}" enctype="multipart/form-data" method="post"
                       accept-charset="utf-8" autocomplete="off">
                     @csrf
                     <a id="e2-note-livesave-action" href="@ajax/note-livesave/"></a>
