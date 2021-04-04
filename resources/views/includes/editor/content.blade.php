@@ -1,4 +1,5 @@
 <div class="form-control">
+    <input type="hidden" id="content" name="content">
     <div class="form-subcontrol">
 
         <div class="form-label form-label-sticky input-label">
@@ -37,9 +38,10 @@
         </div>
 
         <div class="form-element">
-            <textarea name="text"
-                      class="required e2-text-textarea e2-textarea-autosize full-width height-16 e2-external-drop-target e2-external-drop-target-textarea e2-external-drop-target-altable"
-                      id="text" tabindex="2" style="height: 396px;"></textarea>
+{{--            <textarea name="text"--}}
+{{--                      class="required e2-text-textarea e2-textarea-autosize full-width height-16 e2-external-drop-target e2-external-drop-target-textarea e2-external-drop-target-altable"--}}
+{{--                      id="text" tabindex="2" style="height: 396px;"></textarea>--}}
+            <editor></editor>
         </div>
 
     </div>
@@ -169,3 +171,52 @@
         </div>
     </div>
 </div>
+
+@push('styles')
+    <style>
+        .editor {
+            font-family: inherit;
+            font-size: inherit;
+            border: none;
+            padding: 6px;
+            box-shadow: none;
+            transition-property: background, border-color, box-shadow, fill;
+            transition-duration: var(--time);
+            transition-timing-function: ease-out;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        .editor {
+            font-family: inherit;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        .editor {
+            vertical-align: baseline;
+            border: none;
+            background: var(--inputBackgroundColor);
+            color: var(--inputTextColor);
+            border-radius: var(--borderRadius);
+        }
+        .editor {
+            resize: vertical;
+            display: block;
+            outline: none;
+        }
+        .editor:focus {
+            transition: none;
+            outline: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+    </style>
+@endpush

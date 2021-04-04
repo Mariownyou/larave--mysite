@@ -49,10 +49,10 @@ class BlogController extends Controller
         //checking if request  is set
         $valid = $request->validate([
             'title' => 'required|min:4|max:200',
-            'text' => 'required',
+            'content' => 'required',
         ]);
 
-        $content=$request->input('text');
+        $content=$request->input('content');
 
         //Prepare HTML & ignore HTML errors
         $dom = new \domdocument();
