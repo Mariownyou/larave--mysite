@@ -54,7 +54,7 @@ class TagController extends Controller
         // Save Tag
         $tag->save();
 
-        return redirect()->route('blog.index');
+        return redirect()->route('tags.show', $tag->slug);
     }
 
     /**
@@ -74,9 +74,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+        return view('blog.tags.edit')->with('tag', $tag);
     }
 
     /**
@@ -86,9 +86,24 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $valid = $request->validate([
+            'name' => 'required|unique:tags|max:200',
+            'slug' => 'required|unique:tags|max:200',
+        ]);
+
+        $slug = Str::slug($request->input('slug'), "-");
+
+        $tag->name = $request->input('name');
+        $tag->slug = $slug;
+        $tag->favorite = $request->input('favorite');
+        $tag->navbar = $request->input('navbar');
+
+        // Save Tag
+        $tag->save();
+
+        return redirect()->route('tags.show', $tag->slug);
     }
 
     /**
