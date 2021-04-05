@@ -16,7 +16,7 @@
     <!-- Fonts -->
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/core.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
 <body>
