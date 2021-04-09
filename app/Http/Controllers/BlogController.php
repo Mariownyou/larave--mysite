@@ -140,8 +140,12 @@ class BlogController extends Controller
         $slug = Str::slug($title, "-");
 
         // check_slug
-        if(BlogPost::where('slug', $slug)->first()) {
-            $slug = $slug.'-'.now()->format('Y-m-d-H');
+        $model = BlogPost::where('slug', $slug)->first();
+        if($model) {
+            if ($model == $post) {
+            } else {
+                $slug = $slug.'-'.now()->format('Y-m-d-H');
+            }
         }
 
         //Prepare HTML & ignore HTML errors
@@ -208,6 +212,7 @@ class BlogController extends Controller
     }
 
     private function createTags($post, $tags) {
+        $post->tags()->detach();
         $tags = array_unique($tags); // To make sure that all tags are unique
 
         foreach ($tags as $tag) {
@@ -229,6 +234,7 @@ class BlogController extends Controller
     }
 
     private function addTags($post, $tags) {
+        $post->tags()->detach();
         $tags = array_unique($tags); // To make sure that all tags are unique
         $post_tags = $post->tags;
 
