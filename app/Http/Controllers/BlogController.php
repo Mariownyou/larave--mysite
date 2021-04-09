@@ -139,7 +139,7 @@ class BlogController extends Controller
         $title = $request->input('title');
         $slug = Str::slug($title, "-");
 
-        // check_tags
+        // check_slug
         if(BlogPost::where('slug', $slug)->first()) {
             $slug = $slug.'-'.now()->format('Y-m-d-H');
         }
@@ -163,7 +163,7 @@ class BlogController extends Controller
         // cretaing tags
         $tags = $request->input('tags');
         if($tags) {
-            $this->createTags($post, $tags);
+            $this->addTags($post, $tags);
         }
 
         // saving Post instance
@@ -222,7 +222,26 @@ class BlogController extends Controller
                 $post->tags()->attach($new_tag->id);
             }
         }
+    }
 
+    private function addTags($post, $tags) {
+        $post_tags = $post->tags;
+        foreach ($tags as $tag) {
+            $model = Tag::where('name', $tag)->first();
+
+            if ($model) {
+                if (!$post_tags->contains($model)) {
+                    $post->tags()->attach($model->id);
+                }
+            } else {
+                $slug = Str::slug($tag, "-");
+                $new_tag = new Tag();
+                $new_tag->name = $tag;
+                $new_tag->slug = $slug;
+                $new_tag->save();
+                $post->tags()->attach($new_tag->id);
+            }
+        }
     }
 
     private function downloadImages($dom) {
