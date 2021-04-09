@@ -208,6 +208,7 @@ class BlogController extends Controller
     }
 
     private function createTags($post, $tags) {
+        $tags = array_unique($tags); // To make sure that all tags are unique
         foreach ($tags as $tag) {
             $model = Tag::where('name', $tag)->first();
 
@@ -223,11 +224,13 @@ class BlogController extends Controller
             }
         }
         // To make sure that all tags are unique
-        $post->tags = array_unique($post->tags);
+        $post->tags = array_unique(array($post->tags));
     }
 
     private function addTags($post, $tags) {
+        $tags = array_unique($tags); // To make sure that all tags are unique
         $post_tags = $post->tags;
+
         foreach ($tags as $tag) {
             $model = Tag::where('name', $tag)->first();
 
@@ -244,8 +247,6 @@ class BlogController extends Controller
                 $post->tags()->attach($new_tag->id);
             }
         }
-        // To make sure that all tags are unique
-        $post->tags = array_unique($post->tags);
     }
 
     private function downloadImages($dom) {

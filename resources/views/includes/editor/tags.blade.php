@@ -11,11 +11,14 @@
                 data-placeholder=" " size="2" style="display: none;">
             @foreach($items as $item)
                 @if(@$post)
-                    @if(@$post->tags->contains($item))
+                    @if($post->tags->contains($item))
                         <option selected>{{ $item->name }}</option>
+                    @else
+                        <option>{{ $item->name }}</option>
                     @endif
+                @else
+                    <option>{{ $item->name }}</option>
                 @endif
-                <option>{{ $item->name }}</option>
             @endforeach
         </select>
     </div>
