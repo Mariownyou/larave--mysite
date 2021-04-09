@@ -36,7 +36,9 @@
         });
 
         function redirect(url) {
-            window.location.replace("http://localhost:8000/posts");
+            //window.location.replace("http://localhost:8000/posts");
+            // prod
+            window.location.replace("http://levakondratev.ru/posts");
             //document.location.href='http://stackoverflow.com'
         }
     </script>
