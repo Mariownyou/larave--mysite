@@ -14,7 +14,9 @@ class DraftsController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::all()->where('published', false);
+        $posts = BlogPost::where('published', false)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('blog.drafts.index')->with('posts', $posts);
     }

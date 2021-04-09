@@ -1,5 +1,5 @@
 <div class="form-control">
-    <input type="hidden" id="content" name="content">
+    <input type="hidden" id="content" name="content" value="{{ @$post->content }}">
     <div class="form-subcontrol">
 
         <div class="form-label form-label-sticky input-label">
@@ -41,7 +41,11 @@
 {{--            <textarea name="text"--}}
 {{--                      class="required e2-text-textarea e2-textarea-autosize full-width height-16 e2-external-drop-target e2-external-drop-target-textarea e2-external-drop-target-altable"--}}
 {{--                      id="text" tabindex="2" style="height: 396px;"></textarea>--}}
-            <editor></editor>
+            @if(@$edit)
+                <editor v-bind:is-edit='true' v-bind:content="`{{ $post->content }}`"></editor>
+            @else
+                <editor></editor>
+            @endif
         </div>
 
     </div>

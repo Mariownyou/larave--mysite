@@ -8,6 +8,11 @@ use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'edit','update', 'store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

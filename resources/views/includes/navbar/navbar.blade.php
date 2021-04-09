@@ -125,7 +125,7 @@
     </nav>
 
     <div class="header-content">
-        @include('includes.spotlight')
+        @include('includes.admin.admin_panel')
     </div>
     <div class="menu-spacer"></div>
 

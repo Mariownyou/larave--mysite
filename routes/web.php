@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'home');
 
 Auth::routes();
 
-Route::name('blog.')->prefix('blog')->group(function () {
-    Route::post('/publish', [App\Http\Controllers\BlogController::class, 'publish']);
+Route::name('blog.')->group(function () {
+    Route::post('/publish', [App\Http\Controllers\BlogController::class, 'publish'])
+        ->name('publish')
+        ->middleware('auth');
+    Route::post('/delete', [App\Http\Controllers\BlogController::class, 'delete'])
+        ->name('delete')
+        ->middleware('auth');
     Route::get('/preview/{id}', [App\Http\Controllers\BlogController::class, 'private'])->name('preview');
     Route::resource('posts', 'App\Http\Controllers\BlogController');
-    Route::resource('drafts', 'App\Http\Controllers\DraftsController');
+    Route::resource('drafts', 'App\Http\Controllers\DraftsController')->middleware('auth');
     Route::resource('tags', 'App\Http\Controllers\TagController');
 });
 

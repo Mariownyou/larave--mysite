@@ -1,5 +1,7 @@
 <template>
-    <editor-content class="editor" style="min-height: 396px;" id="text" :editor="editor" />
+    <div class="editor" style="min-height: 396px;">
+        <editor-content id="text" :editor="editor" />
+    </div>
 </template>
 
 <script>
@@ -108,7 +110,6 @@ export default {
         content: attr(data-empty-text);
         float: left;
         color: #aaa;
-        pointer-events: none;
         height: 0;
         font-style: italic;
     }

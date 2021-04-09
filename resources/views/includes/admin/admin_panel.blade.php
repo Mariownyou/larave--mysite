@@ -11,10 +11,15 @@
                 </a>
             </span>
 
-             <span class="admin-icon" id="e2-drafts-item">
+            <span class="admin-icon" id="e2-drafts-item">
                 <span id="e2-drafts" title="Черновики (4)">
                   <a href="{{ route('blog.drafts.index') }}" class="nu">
-                    <span class="e2-svgi"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path stroke="none" d="M3 3h4v4H3zM9 3h4v4H9zM3 9h4v4H3zM9 9h4v4H9z"></path></svg><span class="e2-unsaved-led" style="display: none"></span></span>
+                    <span class="e2-svgi">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path stroke="none" d="M3 3h4v4H3zM9 3h4v4H9zM3 9h4v4H3zM9 9h4v4H9z"></path>
+                        </svg>
+                        <span class="e2-unsaved-led" style="display: none"></span>
+                    </span>
                   </a>
                 </span>
             </span>
