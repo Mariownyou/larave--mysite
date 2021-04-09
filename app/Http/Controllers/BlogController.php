@@ -229,8 +229,6 @@ class BlogController extends Controller
                 $post->tags()->attach($new_tag->id);
             }
         }
-        // To make sure that all tags are unique
-        $post->tags = array_unique(array($post->tags));
     }
 
     // TODO отрефакторить и убрать лишнюю функцию
