@@ -222,6 +222,8 @@ class BlogController extends Controller
                 $post->tags()->attach($new_tag->id);
             }
         }
+        // To make sure that all tags are unique
+        $post->tags = array_unique($post->tags);
     }
 
     private function addTags($post, $tags) {
@@ -242,6 +244,8 @@ class BlogController extends Controller
                 $post->tags()->attach($new_tag->id);
             }
         }
+        // To make sure that all tags are unique
+        $post->tags = array_unique($post->tags);
     }
 
     private function downloadImages($dom) {
