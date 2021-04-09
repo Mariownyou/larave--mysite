@@ -209,6 +209,7 @@ class BlogController extends Controller
 
     private function createTags($post, $tags) {
         $tags = array_unique($tags); // To make sure that all tags are unique
+
         foreach ($tags as $tag) {
             $model = Tag::where('name', $tag)->first();
 
@@ -230,6 +231,7 @@ class BlogController extends Controller
     private function addTags($post, $tags) {
         $tags = array_unique($tags); // To make sure that all tags are unique
         $post_tags = $post->tags;
+        dd($tags);
 
         foreach ($tags as $tag) {
             $model = Tag::where('name', $tag)->first();
