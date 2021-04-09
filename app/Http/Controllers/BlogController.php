@@ -140,8 +140,8 @@ class BlogController extends Controller
         $slug = Str::slug($title, "-");
 
         // check_tags
-        if(Tag::where('name', $slug)->first()) {
-            $slug += now();
+        if(BlogPost::where('slug', $slug)->first()) {
+            $slug = $slug.'-'.now()->format('Y-m-d-H');
         }
 
         //Prepare HTML & ignore HTML errors
