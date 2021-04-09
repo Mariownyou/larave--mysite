@@ -233,6 +233,7 @@ class BlogController extends Controller
         $post->tags = array_unique(array($post->tags));
     }
 
+    // TODO отрефакторить и убрать лишнюю функцию
     private function addTags($post, $tags) {
         $post->tags()->detach();
         $tags = array_unique($tags); // To make sure that all tags are unique

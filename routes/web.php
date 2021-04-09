@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', 'home');
+Route::redirect('/blog/preview/{id}', '/preview/{id}');
 
 Auth::routes();
 
