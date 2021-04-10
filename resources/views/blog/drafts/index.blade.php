@@ -2,7 +2,7 @@
 
 @section('page-title')
     <div class="e2-heading">
-        <h2>Черновикики</h2>
+        <h2>Черновики</h2>
     </div>
 @endsection
 

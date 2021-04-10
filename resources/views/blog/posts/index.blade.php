@@ -1,7 +1,7 @@
 @extends('layouts.blog')
 
 @section('page-title')
-    Блог
+    <h1>Блог</h1>
 @endsection
 
 @section('content')
