@@ -8,7 +8,7 @@ $items = \App\Models\Tag::all()->where('navbar', true);
 
     <div class="menu-items">
         @foreach($items as $item)
-            <a class="menu-item" href="{{ route('blog.tags.show', $item->name) }}">
+            <a class="menu-item" href="{{ route('blog.tags.show', $item->slug) }}">
                 <div class="menu-link">{{ $item->name }}</div>
             </a>
         @endforeach

@@ -16,7 +16,7 @@
 
 
                         <div class="e2-draft-preview-text">
-                            {!! $post->content  !!}
+                            {!! \App\Http\Controllers\BlogController::parseText($post->content) !!}
                         </div>
                     </div>
                 </div>

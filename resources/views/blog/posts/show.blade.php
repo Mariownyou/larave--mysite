@@ -1,8 +1,7 @@
 @extends('layouts.blog')
 
 @section('content')
-    <div class="e2-note">
+    <div class="content">
         @include('includes.post', ['post' => $post])
     </div>
-    @include('includes.editor.componetns.button', ['title' => 'Опубликовать заметку'])
 @endsection

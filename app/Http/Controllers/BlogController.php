@@ -68,15 +68,8 @@ class BlogController extends Controller
             $slug = $slug.'-'.now()->format('Y-m-d-H');
         }
 
-        //Prepare HTML & ignore HTML errors
-        $dom = new \domdocument();
-        $dom->loadHtml('<?xml encoding="utf-8" ?>' . $content, LIBXML_NOWARNING | LIBXML_NOERROR);
-
         //identify img element
-        $this->downloadImages($dom);
-
-        // final variable to store in DB
-        $content = $dom->savehtml();
+//        $content = $this->parseText($content);
 
         // creating Post instance
         $post = new BlogPost();
@@ -148,15 +141,8 @@ class BlogController extends Controller
             }
         }
 
-        //Prepare HTML & ignore HTML errors
-        $dom = new \domdocument();
-        $dom->loadHtml('<?xml encoding="utf-8" ?>' . $content, LIBXML_NOWARNING | LIBXML_NOERROR);
-
         //identify img element
-        $this->downloadImages($dom);
-
-        // final variable to store in DB
-        $content = $dom->savehtml();
+//        $content = $this->parseText($content);
 
         // creating Post instance
         $post->title = $title;
@@ -255,37 +241,55 @@ class BlogController extends Controller
         }
     }
 
-    private function downloadImages($dom) {
-        $images = $dom->getelementsbytagname('img');
+    private static function ul_list ($regs) {
+        $item = $regs[1];
+        return sprintf ("\n<ul>\n\t<li>%s</li>\n</ul>", trim ($item));
+    }
 
-        //loop over img elements, decode their base64 source data (src) and save them to folder,
-        //and then replace base64 src with stored image URL.
-        foreach($images as $k => $img) {
-            //collect img source data
-            $data = $img->getattribute('src');
+    private static function ol_list ($regs) {
+        $item = $regs[1];
+        return sprintf ("\n<ol>\n\t<li>%s</li>\n</ol>", trim ($item));
+    }
 
-            //checking if img source data is image by detecting 'data:image' in string
-            if (strpos($data, 'data:image') !== false) {
-                list($type, $data) = explode(';', $data);
-                list(, $data) = explode(',', $data);
+    private static function blockquote ($regs) {
+        $item = $regs[2];
+        return sprintf ("\n<blockquote>%s</blockquote>", trim ($item));
+    }
 
-                //decode base64
-                $data = base64_decode($data);
+    private static function header ($regs) {
+        list ($tmp, $chars, $header) = $regs;
+        $level = strlen ($chars);
+        return sprintf ('<h%d>%s</h%d>', $level, trim ($header), $level);
+    }
 
-                //naming image file
-                $image_name = time() . rand(000, 999) . $k . '.png';
-
-                // image path (path) to use upload file to
-                $path = 'img/posts/' . $image_name;
-
-                //image path (path2) to save to DB so that summernote can display image in edit mode (When editing summernote content) NB: the difference btwn path and path2 is the forward slash "/" in path2
-                $path2 = '/img/posts/' . $image_name;
-
-                file_put_contents($path, $data);
-
-                $img->removeattribute('src');
-                $img->setattribute('src', $path2);
+    public static function parseText($content) {
+        $rules = array (
+            '/(#+)(.*)/' => 'self::header',                           // headers
+            '/\[([^\[]+)\]\(([^\)]+)\)/' => '<a href=\'\2\'>\1</a>',  // links
+            '/(\*\*|__)(.*?)\1/' => '<strong>\2</strong>',            // bold
+            '/(\*|_)(.*?)\1/' => '<em>\2</em>',                       // emphasis
+            '/\~\~(.*?)\~\~/' => '<del>\1</del>',                     // del
+            '/\"(.*[a-zA-Z])\"/' => '<q>\1</q>',                      // quote
+            '/\"(.*[а-яА-Я])\"/' => '«\1»',                           // quote
+            '/`(.*?)`/' => '<code>\1</code>',                         // inline code
+            '/\n\*(.*)/' => 'self::ul_list',                          // ul lists
+            '/\n[0-9]+\.(.*)/' => 'self::ol_list',                    // ol lists
+            '/\n(&gt;|\>)(.*)/' => 'self::blockquote',                // blockquotes
+            '/\n-{5,}/' => "\n<hr />",                                // horizontal rule
+            '/(.+?)(\r|$)+/' => '<p>\1</p>',                          // add paragraphs
+            '/<\/ul>\s?<ul>/' => '',                                  // fix extra ul
+            '/<\/ol>\s?<ol>/' => '',                                  // fix extra ol
+            '/<\/blockquote><blockquote>/' => "\n"                    // fix extra blockquote
+        );
+        $text = $content;
+        foreach ($rules as $regex => $replacement) {
+            if (is_callable ( $replacement)) {
+                $text = preg_replace_callback ($regex, $replacement, $text);
+            } else {
+                $text = preg_replace ($regex, $replacement, $text);
             }
         }
+//        dd($text);
+		return trim ($text);
     }
 }

@@ -84,7 +84,7 @@ export default {
                     let content = getHTML();
                     input.value = content
                     console.log(content);
-                }
+                },
             }),
         }
     },

@@ -94,13 +94,24 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $valid = $request->validate([
-            'name' => 'required|unique:tags|max:200',
-            'slug' => 'required|unique:tags|max:200',
+            'name' => 'required|max:200',
+            'slug' => 'required|max:200',
         ]);
 
+        $name = $request->input('name');
         $slug = Str::slug($request->input('slug'), "-");
+        $model = Tag::with('slug', $slug);
+        if ($model) {
+            if (!$model == $tag) {
+                if($model->name == $tag->name) {
+                    $slug = $slug.now()->format('Y-m-d-H');
+                } else {
+                    $name = $name.now()->format('Y-m-d-H');
+                }
+            }
+        }
 
-        $tag->name = $request->input('name');
+        $tag->name = $name;
         $tag->slug = $slug;
         $tag->favorite = $request->input('favorite');
         $tag->navbar = $request->input('navbar');
@@ -108,7 +119,7 @@ class TagController extends Controller
         // Save Tag
         $tag->save();
 
-        return redirect()->route('tags.show', $tag->slug);
+        return redirect()->route('blog.tags.show', $tag->slug);
     }
 
     /**
@@ -119,6 +130,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // TODO Сделать
     }
 }

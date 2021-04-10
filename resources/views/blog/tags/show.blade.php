@@ -1,13 +1,16 @@
 @extends('layouts.blog')
 
 @section('page-title')
-    {{ $tag->name }}
 @endsection
 
 @section('content')
-    {{ $tag->name }}
-    <a href="{{ route('blog.tags.edit', $tag->slug) }}">Edit</a>
+    <div class="e2-heading">
+        @include('includes.admin.admin_edit_tag', $tag)
+        <h2>Тег: {{ $tag->name }}</h2>
+        <div class="e2-heading-meta">Заметок: {{ $tag->posts()->count() }}</div>
+    </div>
+
     @foreach($tag->posts as $post)
-        <h2>{{ $post->title }}</h2>
+        @include('includes.post', ['post' => $post])
     @endforeach
 @endsection
