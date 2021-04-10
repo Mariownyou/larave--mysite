@@ -11,6 +11,8 @@
     </div>
 
     @foreach($tag->posts as $post)
-        @include('includes.post', ['post' => $post])
+        @if($post->published)
+            @include('includes.post', ['post' => $post])
+        @endif
     @endforeach
 @endsection

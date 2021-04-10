@@ -20,7 +20,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::where('published', false);
+        $tags = Tag::all();
 
         return view('blog.tags.index')->with('tags', $tags);
     }
