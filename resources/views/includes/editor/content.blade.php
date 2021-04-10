@@ -180,27 +180,27 @@
 </div>
 
 @push('scripts')
-    <script>
-        let title = document.getElementById('title');
-        let content = document.getElementById('text');
+{{--    <script>--}}
+{{--        let title = document.getElementById('title');--}}
+{{--        let content = document.getElementById('text');--}}
 
-        if(localStorage.getItem('text')) {
-            content.value = localStorage.getItem('text')
-        }
+{{--        if(localStorage.getItem('text')) {--}}
+{{--            content.value = localStorage.getItem('text')--}}
+{{--        }--}}
 
-        if(localStorage.getItem('title')) {
-            title.value = localStorage.getItem('title')
-        }
+{{--        if(localStorage.getItem('title')) {--}}
+{{--            title.value = localStorage.getItem('title')--}}
+{{--        }--}}
 
-        title.addEventListener('input', () => {
-            localStorage.setItem('title', title.value)
-        })
+{{--        title.addEventListener('input', () => {--}}
+{{--            localStorage.setItem('title', title.value)--}}
+{{--        })--}}
 
-        content.addEventListener('input', () => {
-            console.log(content.value)
-            localStorage.setItem("text", content.value)
-        })
+{{--        content.addEventListener('input', () => {--}}
+{{--            console.log(content.value)--}}
+{{--            localStorage.setItem("text", content.value)--}}
+{{--        })--}}
 
-        console.log(content)
-    </script>
+{{--        console.log(content)--}}
+{{--    </script>--}}
 @endpush
