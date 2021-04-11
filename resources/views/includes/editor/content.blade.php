@@ -184,7 +184,10 @@
         let title = document.getElementById('title');
         let content = document.getElementById('text');
         let post_id = '{{ @$post ? $post->id : null }}';
-        let post = {title, text}
+        let post = {
+            title: title.value,
+            text: content.value
+        }
 
         if (post_id) {
             post_id = `copy-${post_id}`
