@@ -180,27 +180,50 @@
 </div>
 
 @push('scripts')
-{{--    <script>--}}
-{{--        let title = document.getElementById('title');--}}
-{{--        let content = document.getElementById('text');--}}
+    <script>
+        let title = document.getElementById('title');
+        let content = document.getElementById('text');
+        let post_id = '{{ @$post ? $post->id : null }}';
+        let post = {title, text}
 
-{{--        if(localStorage.getItem('text')) {--}}
-{{--            content.value = localStorage.getItem('text')--}}
-{{--        }--}}
+        if (post_id) {
+            post_id = `copy-${post_id}`
+        } else {
+            post_id = 'new-copy'
+        }
 
-{{--        if(localStorage.getItem('title')) {--}}
-{{--            title.value = localStorage.getItem('title')--}}
-{{--        }--}}
+        console.log(post_id)
+        if(localStorage.getItem(post_id)) {
+            console.log('found')
+            post = JSON.parse(localStorage.getItem(post_id))
+            title.value = post.title
+            content.value = post.text
+        }
 
-{{--        title.addEventListener('input', () => {--}}
-{{--            localStorage.setItem('title', title.value)--}}
-{{--        })--}}
+        title.addEventListener('input', () => {
+            post.title = title.value
+            console.log(post.title)
+        })
 
-{{--        content.addEventListener('input', () => {--}}
-{{--            console.log(content.value)--}}
-{{--            localStorage.setItem("text", content.value)--}}
-{{--        })--}}
+        content.addEventListener('input', () => {
+            post.text = content.value
+            console.log(post.text)
+        })
 
-{{--        console.log(content)--}}
-{{--    </script>--}}
+        document.addEventListener("keydown", function(e) {
+            if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 83) {
+                e.preventDefault();
+                // Process the event here (such as click on submit button)
+                localStorage.setItem(post_id, JSON.stringify(post))
+                console.log('saved');
+            }
+        }, false);
+
+        console.log(content)
+
+        window.onbeforeunload = function() {
+            console.log('asdasd')
+            localStorage.setItem(post_id, JSON.stringify(post))
+        }
+    </script>
 @endpush

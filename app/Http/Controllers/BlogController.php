@@ -241,6 +241,15 @@ class BlogController extends Controller
         }
     }
 
+    private static function para ($regs) {
+        $line = $regs[1];
+        $trimmed = trim ($line);
+        if (preg_match ('/^<\/?(ul|ol|li|h|p|bl)/', $trimmed)) {
+            return "\n" . $line . "\n";
+        }
+        return sprintf ("\n<p>%s</p>\n", $trimmed);
+    }
+
     private static function ul_list ($regs) {
         $item = $regs[1];
         return sprintf ("\n<ul>\n\t<li>%s</li>\n</ul>", trim ($item));
@@ -269,14 +278,14 @@ class BlogController extends Controller
             '/(\*\*|__)(.*?)\1/' => '<strong>\2</strong>',            // bold
             '/(\*|_)(.*?)\1/' => '<em>\2</em>',                       // emphasis
             '/\~\~(.*?)\~\~/' => '<del>\1</del>',                     // del
-            '/\"(.*[a-zA-Z])\"/' => '<q>\1</q>',                      // quote
-            '/\"(.*[а-яА-Я])\"/' => '«\1»',                           // quote
+//            '/\"(.*[a-zA-Z])\"/' => '<q>\1</q>',                      // quote
+            '/(?:"([^>]*)")(?!>)/' => '«\1»',                           // quote
             '/`(.*?)`/' => '<code>\1</code>',                         // inline code
             '/\n\*(.*)/' => 'self::ul_list',                          // ul lists
             '/\n[0-9]+\.(.*)/' => 'self::ol_list',                    // ol lists
             '/\n(&gt;|\>)(.*)/' => 'self::blockquote',                // blockquotes
             '/\n-{5,}/' => "\n<hr />",                                // horizontal rule
-            '/(.+?)(\r|$)+/' => '<p>\1</p>',                          // add paragraphs
+            '/(.+?)(\r|$)+/' => 'self::para',                         // add paragraphs
             '/<\/ul>\s?<ul>/' => '',                                  // fix extra ul
             '/<\/ol>\s?<ol>/' => '',                                  // fix extra ol
             '/<\/blockquote><blockquote>/' => "\n"                    // fix extra blockquote
@@ -289,6 +298,16 @@ class BlogController extends Controller
                 $text = preg_replace ($regex, $replacement, $text);
             }
         }
+
+        $text=preg_replace_callback(
+            '#(([\"]{2,})|(?![^\W])(\"))|([^\s][\"]+(?![\w]))#u',
+            function ($matches) {
+                if (count($matches)===3) return "«»";
+                else if ($matches[1]) return str_replace('"',"«",$matches[1]);
+                else return str_replace('"',"»",$matches[4]);
+            },
+            $text
+        );
 //        dd($text);
 		return trim ($text);
     }
