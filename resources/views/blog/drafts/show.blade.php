@@ -37,7 +37,7 @@
         function redirect(url) {
             //window.location.replace("http://localhost:8000/posts");
             // prod
-            window.location.replace("http://levakondratev.ru/posts");
+            window.location.replace("{{ route('blog.posts.index') }}");
             //document.location.href='http://stackoverflow.com'
         }
     </script>
