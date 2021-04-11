@@ -41,12 +41,12 @@
             @if(@$edit)
                 <textarea name="content"
                           class="required e2-text-textarea e2-textarea-autosize full-width height-16 e2-external-drop-target e2-external-drop-target-textarea e2-external-drop-target-altable"
-                          id="text" tabindex="2" style="height: 396px;">{{ $post->content }}</textarea>
+                          id="text" tabindex="2">{{ $post->content }}</textarea>
 {{--                <editor v-bind:is-edit='true' v-bind:content="`{{ $post->content }}`"></editor>--}}
             @else
                 <textarea name="content"
                 class="required e2-text-textarea e2-textarea-autosize full-width height-16 e2-external-drop-target e2-external-drop-target-textarea e2-external-drop-target-altable"
-                id="text" tabindex="2" style="height: 396px;"></textarea>
+                id="text" tabindex="2"></textarea>
 {{--                <editor></editor>--}}
             @endif
         </div>
@@ -209,6 +209,8 @@
         })
 
         content.addEventListener('input', () => {
+            content.style.height = 'auto';
+            content.style.height = content.scrollHeight + 'px';
             post.text = content.value
             console.log(post.text)
         })

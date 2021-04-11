@@ -19,7 +19,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/publish',
+                    url: '{{ route('blog.publish') }}',
                     data: {
                         id: $('#post_id').val(),
                     },
