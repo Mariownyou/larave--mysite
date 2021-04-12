@@ -29,9 +29,6 @@ $posts = $tag->posts;
                     <a href="{{ route('blog.posts.show', $post) }}">{{ $post->title }}</a>
                 </li>
             @endforeach
-            <li>
-                <a href="http://levakondratev.ru/blog/preview/a843cf0ceec9b9cb4edb037aa25e4651c5a99597">Зачем Тургеневу нужна была смерть Базарова?</a>
-            </li>
         </ul>
         <h2>Еще что-то</h2>
         <ul>
