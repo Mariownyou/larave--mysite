@@ -1,4 +1,7 @@
 @extends('layouts.app')
+<?php
+$tags = \App\Models\Tag::where('name', 'literature')->get();
+?>
 
 @section('page-title')
     Школа
@@ -20,9 +23,11 @@
         </ul>
         <h2>Литература</h2>
         <ul>
-            <li>
-                <a href="http://levakondratev.ru/blog/preview/2f1b6c2ef765355e3ca9e72237bba55050c2abeb">Личность Аркадия: от Базарова до Кати</a>
-            </li>
+            @foreach($tags as $tag)
+                <li>
+                    <a href="{{ route('blog.posts.show', $tag->post) }}">{{ $tag->post->title }}</a>
+                </li>
+            @endforeach
             <li>
                 <a href="http://levakondratev.ru/blog/preview/a843cf0ceec9b9cb4edb037aa25e4651c5a99597">Зачем Тургеневу нужна была смерть Базарова?</a>
             </li>

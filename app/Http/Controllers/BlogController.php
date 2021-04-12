@@ -59,6 +59,7 @@ class BlogController extends Controller
             'content' => 'required',
         ]);
 
+
         $content=$request->input('content');
         $title = $request->input('title');
         $slug = Str::slug($title, "-");
@@ -311,4 +312,5 @@ class BlogController extends Controller
 //        dd($text);
 		return trim ($text);
     }
+
 }

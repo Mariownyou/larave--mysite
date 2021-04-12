@@ -19,7 +19,7 @@
             <div class="e2-notes-gallery-text">
 
                 <div class="e2-notes-gallery-item-title  e2-notes-gallery-item-title-large"><a
-                        href="https://ilyabirman.ru/meanwhile/all/supply-demand-equilibrium-price/"
+                        href="http://levush.ru.swtest.ru/home/"
                         title="7 ноября 2014, 22:03" class="">Основной проект: Сайт для школы</a>
                 </div>
 

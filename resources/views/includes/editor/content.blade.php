@@ -46,7 +46,7 @@
             @else
                 <textarea name="content"
                 class="required e2-text-textarea e2-textarea-autosize full-width height-16 e2-external-drop-target e2-external-drop-target-textarea e2-external-drop-target-altable"
-                id="text" tabindex="2"></textarea>
+                id="text" tabindex="2" autofocus="false"></textarea>
 {{--                <editor></editor>--}}
             @endif
         </div>
@@ -155,7 +155,7 @@
                         <span class="e2-admin-item-text">Загрузить файл</span>
                     </span>
                     <label for="e2-upload-button" class="e2-upload-controls-attach-label">
-                        <input type="file" multiple="multiple"
+                        <input type="file" multiple="multiple" name="file"
                                class="e2-upload-controls-attach-input" id="e2-upload-button">
                     </label>
                 </div>
