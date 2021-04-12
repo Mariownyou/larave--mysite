@@ -1,6 +1,7 @@
 @extends('layouts.app')
 <?php
-$tags = \App\Models\Tag::where('name', 'literature')->get();
+$tag = \App\Models\Tag::where('name', 'Литература')->first();
+$posts = $tag->posts;
 ?>
 
 @section('page-title')
@@ -23,9 +24,9 @@ $tags = \App\Models\Tag::where('name', 'literature')->get();
         </ul>
         <h2>Литература</h2>
         <ul>
-            @foreach($tags as $tag)
+            @foreach($posts as $post)
                 <li>
-                    <a href="{{ route('blog.posts.show', $tag->post) }}">{{ $tag->post->title }}</a>
+                    <a href="{{ route('blog.posts.show', $post) }}">{{ $post->title }}</a>
                 </li>
             @endforeach
             <li>
