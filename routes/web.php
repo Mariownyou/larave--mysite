@@ -17,6 +17,9 @@ Route::redirect('/', 'home');
 Route::redirect('/blog/preview/{id}', '/preview/{id}');
 
 Auth::routes();
+Route::post('/logout', [App\Http\Controllers\MainController::class, 'logout'])
+    ->name('logout')
+    ->middleware('auth');
 
 Route::name('blog.')->group(function () {
     Route::post('/publish', [App\Http\Controllers\BlogController::class, 'publish'])
@@ -25,6 +28,10 @@ Route::name('blog.')->group(function () {
     Route::post('/delete', [App\Http\Controllers\BlogController::class, 'delete'])
         ->name('delete')
         ->middleware('auth');
+    Route::post('/file_upload', [App\Http\Controllers\BlogController::class, 'file_upload'])
+        ->name('file_upload')
+        ->middleware('auth');
+
     Route::get('/preview/{id}', [App\Http\Controllers\BlogController::class, 'private'])->name('preview');
     Route::resource('posts', 'App\Http\Controllers\BlogController');
     Route::resource('drafts', 'App\Http\Controllers\DraftsController')->middleware('auth');

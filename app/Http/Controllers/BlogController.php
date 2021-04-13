@@ -313,4 +313,31 @@ class BlogController extends Controller
 		return trim ($text);
     }
 
+    public function file_upload(Request $request) {
+        request()->validate([
+            'file'  => 'required|mimes:doc,docx,pdf,txt,png,jpg|max:2048',
+        ]);
+
+        if ($files = $request->file('file')) {
+
+            //store file into document folder
+            $file = $request->file->store('public/img');
+
+            //store your file into database
+            //$document = new Document();
+            //$document->title = $file;
+            //$document->save();
+
+            return Response()->json([
+                "success" => true,
+                "file" => $file
+            ]);
+
+        }
+
+        return Response()->json([
+            "success" => false,
+            "file" => ''
+        ]);
+    }
 }

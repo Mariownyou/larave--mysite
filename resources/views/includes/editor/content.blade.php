@@ -224,11 +224,32 @@
             }
         }, false);
 
-        console.log(content)
 
         window.onbeforeunload = function() {
             console.log('asdasd')
             localStorage.setItem(post_id, JSON.stringify(post))
         }
+
+        $('#e2-upload-button').on('change', function (e) {
+            let file = $(this)[0].files[0];
+            let formData = new FormData();
+            formData.append('file', file);
+            console.log(file);
+
+            $.ajax({
+                url: '{{ route('blog.file_upload') }}',
+                type: 'POST',
+                data: formData,
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
+                success : function(data) {
+                    console.log(data);
+                    content.value += '\n' + data.file;
+                }
+            })
+        })
     </script>
 @endpush

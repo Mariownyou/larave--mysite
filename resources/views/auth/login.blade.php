@@ -19,7 +19,7 @@
 
                     <label><a href="{{ route('password.request') }}">Я&nbsp;забыл</a></label>
 
-                    <label><input type="checkbox" class="checkbox input-disableable" name="is_public_pc" id="is_public_pc">&nbsp;Чужой&nbsp;компьютер</label>
+                    <label><input type="checkbox" class="checkbox input-disableable" name="is_public_p" id="is_public_pc">&nbsp;Чужой&nbsp;компьютер</label>
 
                     <div class="e2-login-window-button">
                         <button type="submit" id="login-button" class="e2-button e2-submit-button input-disableable">
