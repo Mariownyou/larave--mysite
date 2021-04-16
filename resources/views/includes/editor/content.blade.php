@@ -183,6 +183,8 @@
     <script>
         let title = document.getElementById('title');
         let content = document.getElementById('text');
+        const submit = document.getElementById('submit-button')
+        const form = document.getElementById('form-note')
         let post_id = '{{ @$post ? $post->id : null }}';
         let post = {
             title: title.value,
@@ -205,14 +207,19 @@
 
         title.addEventListener('input', () => {
             post.title = title.value
-            console.log(post.title)
+            localStorage.setItem(post_id, JSON.stringify(post))
         })
 
         content.addEventListener('input', () => {
             content.style.height = 'auto';
             content.style.height = content.scrollHeight + 'px';
             post.text = content.value
-            console.log(post.text)
+            localStorage.setItem(post_id, JSON.stringify(post))
+        })
+
+        form.addEventListener('submit', () => {
+            window.localStorage.removeItem(post_id);
+            console.log('cahce cleared', localStorage.getItem(post_id));
         })
 
         document.addEventListener("keydown", function(e) {
@@ -224,11 +231,10 @@
             }
         }, false);
 
-
-        window.onbeforeunload = function() {
-            console.log('asdasd')
-            localStorage.setItem(post_id, JSON.stringify(post))
-        }
+        // window.onbeforeunload = function() {
+        //     console.log('refresh')
+        //     localStorage.setItem(post_id, JSON.stringify(post))
+        // }
 
         $('#e2-upload-button').on('change', function (e) {
             let file = $(this)[0].files[0];
