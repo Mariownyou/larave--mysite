@@ -4909,7 +4909,7 @@ button {
 @media(max-width: 735px) {
     .admin-menu {
         right: 0;
-        top: 50px
+        top: -25px;
     }
 }
 

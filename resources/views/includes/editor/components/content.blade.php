@@ -32,27 +32,27 @@
 @push('styles')
     <style>
         .editor {
-        min-height: 400px;
-        font-family: inherit;
-        font-size: 16px;
-        line-height: 22px;
-        border: none;
-        padding: 6px;
-        box-shadow: none;
-        transition-property: background, border-color, box-shadow, fill;
-        transition-duration: var(--time);
-        transition-timing-function: ease-out;
-        vertical-align: baseline;
-        background: var(--inputBackgroundColor);
-        color: var(--inputTextColor);
-        border-radius: var(--borderRadius);
-        resize: vertical;
-        display: block;
-        outline: none;
+            min-height: 400px;
+            font-family: inherit;
+            font-size: 16px;
+            line-height: 22px;
+            border: none;
+            padding: 6px;
+            box-shadow: none;
+            transition-property: background, border-color, box-shadow, fill;
+            transition-duration: var(--time);
+            transition-timing-function: ease-out;
+            vertical-align: baseline;
+            background: var(--inputBackgroundColor);
+            color: var(--inputTextColor);
+            border-radius: var(--borderRadius);
+            resize: vertical;
+            display: block;
+            outline: none;
         }
 
         .editor:focus {
-        transition: none
+            transition: none
         }
 
         .editor p {
