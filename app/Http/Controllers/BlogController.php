@@ -59,7 +59,6 @@ class BlogController extends Controller
             'content' => 'required',
         ]);
 
-
         $content=$request->input('content');
         $title = $request->input('title');
         $slug = Str::slug($title, "-");
@@ -88,7 +87,6 @@ class BlogController extends Controller
 
         // saving Post instance
         $post->save();
-
         return redirect()->route('blog.drafts.show', $post);
     }
 

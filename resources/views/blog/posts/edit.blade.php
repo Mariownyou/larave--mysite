@@ -22,7 +22,7 @@
             </script>
             <a id="e2-note-livesave-action" href="https://demo.blogengine.ru/@ajax/note-livesave/"></a>
             <div class="form" id="e2-note-form-wrapper">
-                @include('includes.editor.componetns.input_title', ['post' => $post])
+                @include('includes.editor.components.input_title', ['post' => $post])
                 @include('includes.editor.content', ['post' => $post, 'edit' => true])
                 @include('includes.editor.tags')
                 <div class="form-control">

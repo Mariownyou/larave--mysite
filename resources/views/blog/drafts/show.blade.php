@@ -5,7 +5,7 @@
         @include('includes.post', ['post' => $post])
         <form method="post" id="form">
             <input type="hidden" value="{{ $post->id }}" id="post_id">
-            @include('includes.editor.componetns.button', ['title' => 'Опубликовать заметку'])
+            @include('includes.editor.components.button', ['title' => 'Опубликовать заметку'])
         </form>
     </div>
 @endsection

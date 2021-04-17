@@ -14,14 +14,14 @@
                     @csrf
                     <div class="form" id="e2-note-form-wrapper">
 
-                        @include('includes.editor.componetns.input', ['big'=> true, 'title' => 'Тег', 'name' => 'name'])
-                        @include('includes.editor.componetns.input', ['title' => 'В&nbsp;адресной строке', 'name' => 'slug'])
+                        @include('includes.editor.components.input', ['big'=> true, 'title' => 'Тег', 'name' => 'name'])
+                        @include('includes.editor.components.input', ['title' => 'В&nbsp;адресной строке', 'name' => 'slug'])
                         <div class="form-control">
                             <div class="form-label input-label"><label>Дополнительно</label></div>
-                            @include('includes.editor.componetns.checkbox', ['name' => 'favorite', 'title' => ' Добавить в избранное'])
-                            @include('includes.editor.componetns.checkbox', ['name' => 'navbar', 'title' => ' Показывать в навигации'])
+                            @include('includes.editor.components.checkbox', ['name' => 'favorite', 'title' => ' Добавить в избранное'])
+                            @include('includes.editor.components.checkbox', ['name' => 'navbar', 'title' => ' Показывать в навигации'])
                         </div>
-                        @include('includes.editor.componetns.form_button', ['title' => 'Сохранить изменения'])
+                        @include('includes.editor.components.form_button', ['title' => 'Сохранить изменения'])
                     </div>
                 </form>
             </div>

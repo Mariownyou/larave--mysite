@@ -21,6 +21,8 @@ Route::post('/logout', [App\Http\Controllers\MainController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
 
+Route::view('/new', 'includes.editor.new_editor');
+
 Route::name('blog.')->group(function () {
     Route::post('/publish', [App\Http\Controllers\BlogController::class, 'publish'])
         ->name('publish')
