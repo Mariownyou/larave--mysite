@@ -42,4 +42,4 @@ Route::name('blog.')->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/school', [App\Http\Controllers\MainController::class, 'school'])->name('school');
-Route::get('/search', [App\Http\Controllers\MainController::class, 'search'])->name('search');
+Route::get('/search', [App\Http\Controllers\BlogController::class, 'search'])->name('search');

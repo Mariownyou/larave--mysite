@@ -191,6 +191,18 @@ class BlogController extends Controller
         return response(['status' => 'OK', 'post_id' => $post->id, 'post_pub' => $post->published], 200);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('query');
+
+        $posts = BlogPost::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%")
+            ->get();
+
+        return view('pages.search')->with('posts', $posts);
+    }
+
     public function private($id) {
         $post = BlogPost::where('private_id', $id)->first();
         return view('blog.posts.preview')->with('post', $post);
