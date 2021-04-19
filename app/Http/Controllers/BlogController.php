@@ -196,8 +196,8 @@ class BlogController extends Controller
         $search = $request->input('query');
 
         $posts = BlogPost::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('content', 'LIKE', "%{$search}%")
+            ->where('title', 'like', "%{$search}%")
+            ->orWhere('content', 'like', "%{$search}%")
             ->get();
 
         return view('pages.search')->with('posts', $posts);
