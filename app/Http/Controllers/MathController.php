@@ -86,6 +86,8 @@ class MathController extends Controller
     public function show($id)
     {
         $post = MathPost::find($id);
+        $post->views += 1;
+        $post->save();
 
         return view('school.math.show')->with('post', $post);
     }

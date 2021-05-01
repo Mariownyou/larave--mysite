@@ -72,7 +72,8 @@
 }
 
 .note-img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 720px;
     object-fit: scale-down;
     padding: 22px 0;
 }

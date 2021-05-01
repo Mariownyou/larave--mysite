@@ -22,7 +22,7 @@
         </div>
         <div class="e2-tags">
             @foreach($posts as $post)
-                <a href="{{ route('school.math.n.show', $post->id) }}" class="e2-tag">{{ $post->title }}</a>
+                <a style="opacity: {{ $post->views > 0 ? 0.5 + $post->views * 0.025 : 0.5 }}; color: black" href="{{ route('school.math.n.show', $post->id) }}" class="e2-tag">{{ $post->title }}</a>
             @endforeach
         </div>
 
