@@ -1,7 +1,7 @@
 @extends('layouts.math')
 
 @section('content')
-    @if(@!$posts)
+    @if(!@$posts)
         <?php
             $posts = \App\Models\MathPost::all();
         ?>

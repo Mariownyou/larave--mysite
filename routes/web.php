@@ -50,5 +50,5 @@ Route::name('school.')->prefix('school')->group(function () {
     });
 });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\BlogController::class, 'search'])->name('search');
