@@ -155,7 +155,7 @@
                         <span class="e2-admin-item-text">Загрузить файл</span>
                     </span>
                     <label for="e2-upload-button" class="e2-upload-controls-attach-label">
-                        <input type="file" multiple="multiple" name="file"
+                        <input type="file" multiple="multiple" name="files[]"
                                class="e2-upload-controls-attach-input" id="e2-upload-button">
                     </label>
                 </div>
@@ -236,7 +236,7 @@
         //     localStorage.setItem(post_id, JSON.stringify(post))
         // }
 
-        $('#e2-upload-button').on('change', function (e) {
+        $('#e2-upload-buttons').on('change', function (e) {
             let file = $(this)[0].files[0];
             let formData = new FormData();
             formData.append('file', file);

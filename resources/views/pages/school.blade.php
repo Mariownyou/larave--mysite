@@ -30,13 +30,10 @@ $posts = $tag->posts;
                 </li>
             @endforeach
         </ul>
-        <h2>Еще что-то</h2>
+        <h2>Математика</h2>
         <ul>
             <li>
-                <a href="http://ilyabirman.ru/meanwhile/all/mon/">Пока ничего нет</a>
-            </li>
-            <li>
-                <a href="http://ilyabirman.ru/meanwhile/all/vertical-scale/">Но наверное скоро будет</a>
+                <a href="{{ route('school.math.index') }}">Домашка и теория</a>
             </li>
         </ul>
     </div>

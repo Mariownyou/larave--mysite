@@ -29,7 +29,7 @@
                         <a class="menu-item" href="#">
                             <div class="menu-link">Проекты</div>
                         </a>
-                        <a class="menu-item" href="{{ route('school') }}">
+                        <a class="menu-item" href="{{ route('school.index') }}">
                             <div class="menu-link">Школа</div>
                         </a>
                         <a class="menu-item" href="#">
@@ -106,7 +106,7 @@
                             <div class="mobile-menu-link">Клуб</div>
                             <svg class="mobile-menu-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M0,0h8v8H6.5V1.5H0z"/></svg>
                         </a>
-                        <a class="mobile-menu-item" href="{{ route('school') }}">
+                        <a class="mobile-menu-item" href="{{ route('school.index') }}">
                             <div class="mobile-menu-link">Школа</div>
                             <svg class="mobile-menu-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M0,0h8v8H6.5V1.5H0z"/></svg>
                         </a>

@@ -30,7 +30,7 @@ Route::name('blog.')->group(function () {
     Route::post('/delete', [App\Http\Controllers\BlogController::class, 'delete'])
         ->name('delete')
         ->middleware('auth');
-    Route::post('/file_upload', [App\Http\Controllers\BlogController::class, 'file_upload'])
+    Route::post('/file_upload', [App\Http\Controllers\MainController::class, 'file_upload'])
         ->name('file_upload')
         ->middleware('auth');
 
@@ -40,6 +40,15 @@ Route::name('blog.')->group(function () {
     Route::resource('tags', 'App\Http\Controllers\TagController');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/school', [App\Http\Controllers\MainController::class, 'school'])->name('school');
+Route::name('school.')->prefix('school')->group(function () {
+    Route::get('/', [App\Http\Controllers\MainController::class, 'school'])->name('index');
+
+    Route::name('math.')->prefix('math')->group(function () {
+        Route::view('/', 'school.math.index')->name('index');
+        Route::resource('n', 'App\Http\Controllers\MathController');
+        Route::resource('t', 'App\Http\Controllers\MathController');
+    });
+});
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\BlogController::class, 'search'])->name('search');

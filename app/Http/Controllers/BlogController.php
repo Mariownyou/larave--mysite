@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Services\Storage\PostHandleService;
 
 class BlogController extends Controller
 {
@@ -82,7 +82,7 @@ class BlogController extends Controller
         // cretaing tags
         $tags = $request->input('tags');
         if($tags) {
-            $this->createTags($post, $tags);
+            app(PostHandleService::class)->createTags($post, $tags);
         }
 
         // saving Post instance
@@ -152,7 +152,8 @@ class BlogController extends Controller
         // cretaing tags
         $tags = $request->input('tags');
         if($tags) {
-            $this->addTags($post, $tags);
+            app(PostHandleService::class)->addTags($post, $tags);
+//            $this->addTags($post, $tags);
         }
 
         // saving Post instance
@@ -206,50 +207,6 @@ class BlogController extends Controller
     public function private($id) {
         $post = BlogPost::where('private_id', $id)->first();
         return view('blog.posts.preview')->with('post', $post);
-    }
-
-    private function createTags($post, $tags) {
-        $post->tags()->detach();
-        $tags = array_unique($tags); // To make sure that all tags are unique
-
-        foreach ($tags as $tag) {
-            $model = Tag::where('name', $tag)->first();
-
-            if ($model) {
-                $post->tags()->attach($model->id);
-            } else {
-                $slug = Str::slug($tag, "-");
-                $new_tag = new Tag();
-                $new_tag->name = $tag;
-                $new_tag->slug = $slug;
-                $new_tag->save();
-                $post->tags()->attach($new_tag->id);
-            }
-        }
-    }
-
-    // TODO отрефакторить и убрать лишнюю функцию
-    private function addTags($post, $tags) {
-        $post->tags()->detach();
-        $tags = array_unique($tags); // To make sure that all tags are unique
-        $post_tags = $post->tags;
-
-        foreach ($tags as $tag) {
-            $model = Tag::where('name', $tag)->first();
-
-            if ($model) {
-                if (!$post_tags->contains($model)) {
-                    $post->tags()->attach($model->id);
-                }
-            } else {
-                $slug = Str::slug($tag, "-");
-                $new_tag = new Tag();
-                $new_tag->name = $tag;
-                $new_tag->slug = $slug;
-                $new_tag->save();
-                $post->tags()->attach($new_tag->id);
-            }
-        }
     }
 
     private static function para ($regs) {
@@ -321,33 +278,5 @@ class BlogController extends Controller
         );
 //        dd($text);
 		return trim ($text);
-    }
-
-    public function file_upload(Request $request) {
-        request()->validate([
-            'file'  => 'required|mimes:doc,docx,pdf,txt,png,jpg|max:2048',
-        ]);
-
-        if ($files = $request->file('file')) {
-
-            //store file into document folder
-            $file = $request->file->store('public/img');
-
-            //store your file into database
-            //$document = new Document();
-            //$document->title = $file;
-            //$document->save();
-
-            return Response()->json([
-                "success" => true,
-                "file" => $file
-            ]);
-
-        }
-
-        return Response()->json([
-            "success" => false,
-            "file" => ''
-        ]);
     }
 }
